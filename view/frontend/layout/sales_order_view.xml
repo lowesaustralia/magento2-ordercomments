@@ -2,7 +2,16 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-            <block ifconfig="sales/ordercomments/show_in_account" class="Bold\OrderComment\Block\Order\Comment" as="ordercomment" name="sales.order.comment" after="sales.order.info"/>
+            <block ifconfig="sales/ordercomments/show_in_account"
+                   class="Magento\Framework\View\Element\Template"
+                   as="ordercomment"
+                   name="sales.order.comment"
+                   after="sales.order.info"
+                   template="Bold_OrderComment::order/view/comment.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Bold\OrderComment\Block\Order\Comment\ViewModel</argument>
+                </arguments>
+            </block>
         </referenceContainer>
     </body>
 </page>

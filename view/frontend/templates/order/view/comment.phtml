@@ -1,15 +1,21 @@
-<?php
-/** @var \Bold\OrderComment\Block\Order\Comment $block */
+<?php declare(strict_types=1);
+
+/** @var \Magento\Framework\View\Element\Template $block */
+/** @var \Bold\OrderComment\Block\Order\Comment\ViewModel $viewModel */
+$viewModel = $block->getData('view_model');
 ?>
-<?php if($comment = $block->getOrderComment()):?>
-<div class="block block-order-details-view">
-    <div class="block-content">
-        <div class="box box-order-comment">
-            <strong class="box-title"><span><?php /* @escapeNotVerified */ echo __('Order Comment') ?></span></strong>
-            <div class="box-content">
-               <?php echo $block->getOrderCommentHtml();?>
+
+<?php if ($viewModel->hasOrderComment()): ?>
+    <div class="block block-order-details-view">
+        <div class="block-content">
+            <div class="box box-order-comment">
+                <strong class="box-title">
+                    <span><?= $block->escapeHtml(__('Order Comment')) ?></span>
+                </strong>
+                <div class="box-content">
+                    <?= /** @noEscape */ $viewModel->getOrderCommentHtml() ?>
+                </div>
             </div>
         </div>
     </div>
-</div>
 <?php endif; ?>
